@@ -1,3 +1,4 @@
+/* eslint-disable node/prefer-global/process */
 /* eslint-disable no-console */
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -28,6 +29,8 @@ const page = await browser.newPage()
 console.log('> New page created')
 const pageErrors: Error[] = []
 const consoleLogs: { type: string, text: string }[] = []
+let hasError: boolean = false
+
 page.on('console', (message: any) => {
   consoleLogs.push({
     type: message.type(),
@@ -47,7 +50,16 @@ pageErrors.forEach((err: Error) => {
 })
 
 consoleLogs.forEach((log: any) => {
+  if (log.type === 'error')
+    hasError = true
+
   // @ts-expect-error hii
   console[log.type](log.text)
 })
+
+if (hasError)
+  process.exit(1)
+else
+  process.exit(0)
+
 // console.log(await page.innerHTML('body'))
