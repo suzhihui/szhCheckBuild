@@ -26,7 +26,7 @@ export interface ErrorConsole {
 
 export type RuntimeErrorLog = ErrorLog | ErrorConsole
 
-export async function deployCheck(options: Options) {
+export async function serveAndCheck(options: Options) {
   const {
     port = 8238,
     servePath,

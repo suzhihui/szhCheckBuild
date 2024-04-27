@@ -4,14 +4,14 @@
 
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { deployCheck, printErrorLogs } from '.'
+import { printErrorLogs, serveAndCheck } from '.'
 
 // const root = dirname(fileURLToPath(import.meta.url))
 const root = resolve(fileURLToPath(import.meta.url), '../..')
 // 找到playground/dist打包生产文件
 const servePath = resolve(root, 'playground/dist')
 
-const logs = await deployCheck({
+const logs = await serveAndCheck({
   servePath,
 })
 
