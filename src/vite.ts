@@ -35,10 +35,12 @@ export default function VitePluginDeployCheck(
             process.exit(0)
           }
         }
-        deployCheck().catch((e) => {
-          console.error(e)
-          process.exit(1)
-        })
+        setTimeout(() => {
+          deployCheck().catch((e) => {
+            console.error(e)
+            process.exit(1)
+          })
+        }, 500)
       },
     },
   }

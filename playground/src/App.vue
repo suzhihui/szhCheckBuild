@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 
-throw 'In Vue'
+// throw 'In Vue'
 </script>
 
 <template>
