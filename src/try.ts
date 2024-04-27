@@ -4,8 +4,7 @@
 
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import c from 'picocolors'
-import { deployCheck } from '.'
+import { deployCheck, printErrorLogs } from '.'
 
 // const root = dirname(fileURLToPath(import.meta.url))
 const root = resolve(fileURLToPath(import.meta.url), '../..')
@@ -17,13 +16,7 @@ const logs = await deployCheck({
 })
 
 if (logs.length) {
-  console.error(c.inverse(c.red(' DEPLOY CHECK')) + c.red(` ${logs.length} Runtime errors found`))
-  logs.forEach((log) => {
-    if (log.type === 'error')
-      console.error(log.error)
-    else
-      console.error(...log.arguments)
-  })
+  printErrorLogs(logs)
   process.exit(1)
 }
 else {
