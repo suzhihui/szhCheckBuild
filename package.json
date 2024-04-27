@@ -6,13 +6,12 @@
   "description": "_description_",
   "author": "suzhihui <wisdom.su@163.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/suzhihui/@suzhihui/check-build#readme",
+  "homepage": "https://github.com/suzhihui/szhCheckBuild#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/suzhihui/@suzhihui/check-build.git"
+    "url": "git+https://github.com/suzhihui/szhCheckBuild.git"
   },
-  "bugs": "https://github.com/suzhihui/@suzhihui/check-build/issues",
+  "bugs": "https://github.com/suzhihui/szhCheckBuild/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -40,6 +39,7 @@
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
+    "build:play": "nr -C playground build",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
@@ -47,11 +47,17 @@
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
+  "dependencies": {
+    "playwright": "^1.43.1",
+    "polka": "^0.5.2",
+    "sirv": "^2.0.4"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.14.0",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
     "@types/node": "^20.12.7",
+    "@types/polka": "^0.5.7",
     "bumpp": "^9.4.0",
     "eslint": "^9.0.0",
     "esno": "^4.7.0",
